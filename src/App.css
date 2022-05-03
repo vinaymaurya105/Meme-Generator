@@ -1,11 +1,13 @@
 body {
   background-color: #8eecf5;
+  padding: 20px 0;
 }
 
 .App {
   text-align: center;
-  width: 50%;
+  width: 60%;
   position: absolute;
   left: 50%;
   transform: translate(-50%);
+  background-color: #fff;
 }
