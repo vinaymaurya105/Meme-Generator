@@ -19,37 +19,52 @@ const useStyle = makeStyles({
   },
 
   btn: {
-    color: "#fff",
     background: "linear-gradient(90.41deg, #711F8D 1.14%, #A818DA 100%)",
     textTransform: "unset",
     borderRadius: 5,
     width: "86%",
     padding: 10,
+    color: "#ffffff",
   },
   container: {
     height: 320,
     padding: "60px 30px 40px ",
+    position: "relative",
+    color: "#fff",
   },
   image: {
     width: "92%",
     height: "100%",
+  },
+  topTxt: {
+    position: "absolute",
+    top: 60,
+    left: "50%",
+    transform: "translate(-50%)",
+  },
+
+  bottomTxt: {
+    position: "absolute",
+    top: "70%",
+    left: "50%",
+    transform: "translate(-50%)",
   },
 });
 
 function Meme() {
   const classes = useStyle();
 
-  // const [data, setData] = useState("");
-
   const [meme, setMeme] = useState({
-    topTex: "",
+    topText: "",
     bottomText: "",
     randomImage: "http://i.imgflip.com/1bij.jpg",
   });
 
-  // const handleChange = (e) => {
-  //   setData(e.target.value);
-  // };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setMeme((prevData) => ({ ...prevData, [name]: value }));
+  };
 
   const handleClick = () => {
     const memesArray = memesData.data.memes;
@@ -62,6 +77,7 @@ function Meme() {
       };
     });
   };
+
   return (
     <>
       <Box className={classes.inputBox}>
@@ -69,8 +85,9 @@ function Meme() {
           variant="outlined"
           className={classes.input}
           placeholder="Top text"
-          // value=""
-          // onChange={handleChange}
+          name="topText"
+          value={meme.topText}
+          onChange={handleChange}
           inputProps={{
             style: {
               height: "10px",
@@ -81,8 +98,9 @@ function Meme() {
           variant="outlined"
           className={classes.input}
           placeholder="bottom-text"
-          // value=""
-          // onChange={handleChange}
+          name="bottomText"
+          value={meme.bottomText}
+          onChange={handleChange}
           inputProps={{
             style: {
               height: "10px",
@@ -97,6 +115,8 @@ function Meme() {
 
       <Box className={classes.container}>
         <img src={meme.randomImage} alt="" className={classes.image} />
+        <h2 className={classes.topTxt}>{meme.topText}</h2>
+        <h2 className={classes.bottomTxt}> {meme.bottomText}</h2>
       </Box>
     </>
   );
